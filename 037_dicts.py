@@ -18,7 +18,7 @@
 my_dictionary = {
   "String": "A sequence of characters",
   "List": "A sequence of any item",
-  "Dictionary": "A collection of keys mapped to values",
+  "Dictionary": "A collection of keys mapped to values", 
 }
 
 # Note that:
