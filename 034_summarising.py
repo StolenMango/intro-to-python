@@ -54,7 +54,11 @@ print("Function: add_up_numbers")
 
 # Add up all the numbers in the list
 def add_up_numbers(numbers):
-  pass
+  sum = 0
+  for number in numbers: 
+    sum = sum + number
+  
+  return sum
 
 check_that_these_are_equal(
   add_up_numbers([1, 2, 3, 4]), 10)
