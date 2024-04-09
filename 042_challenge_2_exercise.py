@@ -27,12 +27,9 @@
 # This is getting really challenging now — and is entirely
 # optional. Don't forget about your assessment!
 
+
 def play_game():
-  board = [
-    [".", ".", "."],
-    [".", ".", "."],
-    [".", ".", "."]
-  ]
+  board = [[".", ".", "."], [".", ".", "."], [".", ".", "."]]
   player = "X"
   while not is_game_over(board):
     print(print_board(board))
@@ -49,6 +46,7 @@ def play_game():
   print(print_board(board))
   print("Game over!")
 
+
 def print_board(board):
   formatted_rows = []
   for row in board:
@@ -56,21 +54,24 @@ def print_board(board):
   grid = "\n".join(formatted_rows)
   return grid
 
+
 def make_move(board, row, column, player):
   if board[row][column] == ".":
     board[row][column] = player
     return board
-  else: 
+  else:
     print("That space is already taken!")
-    return board
+    return make_move(board, int(input("Enter a row: ")),
+                     int(input("Enter a column: ")), player)
+
 
 # This function will extract three cells from the board
 def get_cells(board, coord_1, coord_2, coord_3):
   return [
-    board[coord_1[0]][coord_1[1]],
-    board[coord_2[0]][coord_2[1]],
+    board[coord_1[0]][coord_1[1]], board[coord_2[0]][coord_2[1]],
     board[coord_3[0]][coord_3[1]]
   ]
+
 
 # This function will check if the group is fully placed
 # with player marks, no empty spaces.
@@ -78,11 +79,13 @@ def is_group_complete(board, coord_1, coord_2, coord_3):
   cells = get_cells(board, coord_1, coord_2, coord_3)
   return "." not in cells
 
+
 # This function will check if the group is all the same
 # player mark: X X X or O O O
 def are_all_cells_the_same(board, coord_1, coord_2, coord_3):
   cells = get_cells(board, coord_1, coord_2, coord_3)
   return cells[0] == cells[1] and cells[1] == cells[2]
+
 
 # We'll make a list of groups to check:
 
@@ -100,6 +103,7 @@ groups_to_check = [
   [(0, 2), (1, 1), (2, 0)]
 ]
 
+
 def is_game_over(board):
   # We go through our groups
   for group in groups_to_check:
@@ -107,12 +111,13 @@ def is_game_over(board):
     # winning row, so we skip them.
     if is_group_complete(board, group[0], group[1], group[2]):
       if are_all_cells_the_same(board, group[0], group[1], group[2]):
-        return True # We found a winning row!
+        return True  # We found a winning row!
         # Note that return also stops the function
   for row in board:
     if "." in row:
-      return False # If we get here, we didn't find a winning row
+      return False  # If we get here, we didn't find a winning row
   return True
+
 
 # And test it out:
 
