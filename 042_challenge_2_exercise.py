@@ -57,9 +57,12 @@ def print_board(board):
   return grid
 
 def make_move(board, row, column, player):
-  board[row][column] = player
-  return board
-
+  if board[row][column] == ".":
+    board[row][column] = player
+    return board
+  else: 
+    print("That space is already taken!")
+    return board
 
 # This function will extract three cells from the board
 def get_cells(board, coord_1, coord_2, coord_3):
@@ -106,7 +109,10 @@ def is_game_over(board):
       if are_all_cells_the_same(board, group[0], group[1], group[2]):
         return True # We found a winning row!
         # Note that return also stops the function
-  return False # If we get here, we didn't find a winning row
+  for row in board:
+    if "." in row:
+      return False # If we get here, we didn't find a winning row
+  return True
 
 # And test it out:
 
